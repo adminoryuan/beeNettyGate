@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.beeboot.Mapper.userMapper">
+    <select id="getUserOne"
+
+            resultType="com.example.beeboot.Entity.userEntity">
+        select * from bee_user
+            where admin =#{admin} and password=#{passwd};
+    </select>
+
+    <insert id="addUser" keyProperty="id">
+            insert into bee_user(admin ,password,apikey,phone) values (#{admin},#{password},#{apikey},#{phone})
+    </insert>
+</mapper>
