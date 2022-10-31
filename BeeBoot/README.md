@@ -1,0 +1,6 @@
+- # BeeBoot
+- webapi 访问接口
+- # 如何使用
+- 修改resources 文件下application.properties 
+- 配置数据库链接地址
+- 配置redis 链接地址
