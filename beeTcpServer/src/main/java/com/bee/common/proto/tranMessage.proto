@@ -1,0 +1,19 @@
+syntax = "proto3";
+option java_package="";
+message Message {
+    //消息id
+    uint32 messageId=1;
+    string apikey=2;
+    string node=3;
+    bytes body=4;
+}
+
+message Response{
+    uint32 code=1;
+    string msg=2;
+}
+//控制数据
+message ctrMeg {
+    
+
+}

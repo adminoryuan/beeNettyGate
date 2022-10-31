@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_package="";
+
+message cpuinfo {
+     //用户空间占用CPU百分比
+    string us =1;
+    //内核空间占用cpu
+	  string sy =2;
+	  string io =3;
+}
+message memoryinfo {
+    //物理内存
+    string memused=1;
+	//虚拟内存
+    string swapused=2;
+}
+
+message process {
+    string pid=5;
+	string user=1;
+	string command=2;
+	string mem=3;
+	string cpu=4;
+}
+message processinfo {
+    repeated process processinfo=1;
+}
+
+message diskinfo {
+    
+}
+
+//收集消息汇总
+message collectInfo {
+    cpuinfo cpu=4;
+    diskinfo disk=1;
+    processinfo proinfo=2;
+    memoryinfo meminfo=3;
+}
+

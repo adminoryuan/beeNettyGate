@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beedbclient.mapper.CollectMapper">
+    
+    <insert id="AddCollection" parameterType="com.beedbclient.Entity.CollectionEntity" useGeneratedKeys="true" keyProperty="id">
+        insert  into bee_collectioninfo(sys_memory,swap_memory,disk,sys_cpu,us_cpu,io_cpu,userid,node)
+        values (#{sys_memory},#{swap_memory},#{disk},#{sys_cpu},#{us_cpu},#{io_cpu},(select id from bee_user where apikey=#{apiKey}),#{node})
+    </insert>
+
+    <insert id="BatchProcess" >
+        insert into bee_processinfo(cid, pid, user, command, mem, cpu) values
+            <foreach collection="list" item="item" separator=",">
+                (#{item.cid},#{item.pid},#{item.user},#{item.command},#{item.mem},#{item.cpu})
+            </foreach>
+    </insert>
+
+    <insert id="AddComputerInfo" parameterType="com.beedbclient.Entity.ComputerEntity">
+        insert into bee_node(userid, Node, main_board, disk, mem, cpu_count, cpu_core, date)
+        values ((select id from bee_user where apikey=#{apikey}),#{Node},#{main_board},#{disk},#{mem},#{cpu_count},#{cpu_core},#{date})
+    </insert>
+
+    <select id="HasComputerInfo" parameterType="String" resultType="int">
+        select count(*) from bee_node where node=#{node}
+    </select>
+</mapper>
+
+

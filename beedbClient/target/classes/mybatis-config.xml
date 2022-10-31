@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入外部文件-->
+    <properties resource="db.properties"></properties>
+    <settings>
+        <!--
+        是否开启驼峰命名自动映射，
+        即从经典数据库列名 A_COLUMN 映射到经典 Java 属性名 aColumn。
+        -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!--设置别名，方便调用-->
+<!--    <typeAliases>-->
+<!--        <package name="com.pojo"/>-->
+<!--    </typeAliases>-->
+    <!--配置环境，可以设置多个环境，然后在default里面去切换就可以了-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--每一个mapper.xml需要有一个对应的mapper-->
+    <mappers>
+        <mapper resource="CollectMapper.xml" />
+    </mappers>
+</configuration>
